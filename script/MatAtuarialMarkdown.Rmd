@@ -1,0 +1,628 @@
+---
+title: "Relatório - MATEMÁTICA ATUARIAL"
+author: "Autor: João Guilherme Pereira dos Santos"
+date: "17 de maio, 2023"
+output:
+    html_document:
+       highlight: textmate
+       includes:
+         in_header: "../cabecalho.html"
+       theme: flatly
+       number_sections: no
+       toc: yes
+       toc_depth: 4
+       toc_float:
+         collapsed: yes
+         smooth_scroll: yes
+       code_folding: show
+---
+  
+<br>
+<br>
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Montserrat:wght@100;400;900&family=Reenie+Beanie&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+</head>
+
+
+<style>
+.list-group-item{
+  background-color: transparent;
+}
+body {
+  background-image: url("f4.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+.tocify-item.list-group-item.active {
+    background-color: #75CFB8;
+}
+
+.btn.btn-default.btn-xs.btn-secondary.btn-sm {
+    background-color: #75CFB8;
+}
+
+.btn-default:hover {
+    background-color: #68b09e;
+    border-color: #ffffff
+}
+
+.btn-default {
+    background-color: #68b09e;
+    border-color: #75CFB8
+}
+
+.dropdown-menu>li>a:hover{
+    background-color: #75CFB8;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
+    background-color: #75CFB8;
+}
+
+.btn.btn-default.btn-xs.btn-secondary.btn-sm dropdown-toggle{
+  <span>Código</span>
+}
+
+.justify {
+  text-align: justify;
+}
+
+hr.dotted{
+    width: 10%;
+    border-style: dotted none none;
+    border-width: 7px;
+    border-color: #8e918a;
+}
+
+</style>
+
+
+
+***
+# **Apresentação**
+
+<p class="justify"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; A matemática atuarial é um campo interdisciplinar que combina conceitos de matemática, probabilidade e estatística para analisar e gerenciar riscos financeiros. Ela é aplicada em diversas áreas, como seguros, previdência, investimentos e finanças corporativas, ajudando a avaliar a probabilidade de eventos futuros e seus impactos financeiros. Os atuários utilizam modelos matemáticos para prever a probabilidade de eventos como morte, invalidez ou morbidez, e calcular o valor esperado de pagamentos ou recebimentos futuros. A precisão desses cálculos pode ter um grande impacto nos resultados financeiros das empresas e indivíduos envolvidos.
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; O presente trabalho visa explorar as principais técnicas e conceitos da matemática atuarial, com foco nos cálculos de seguros e anuidades em suas formas discretas e contínuas. Serão utilizados tanto o pacote lifecontingencies para o software R quanto fórmulas manuais para realizar os cálculos necessários. O relatório apresenta uma análise detalhada das principais fórmulas e conceitos utilizados na matemática atuarial, com exemplos práticos que ilustram sua aplicação.
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; É importante enfatizar que ass tábuas de mortalidades são ferramentas essenciais no campo dos seguros, pois fornece informações valiosas sobre a probabilidade de morte em diferentes idades. Ela é uma tabela estatística que descreve a taxa de mortalidade em uma determinada população, levando em consideração fatores como idade, sexo e outros atributos relevantes.
+
+O gráfico abaixo mostra o comportamento que as diferentes tábuas de mortalidade podem apresentar:
+
+```{r Pacotes para personalizar o markdown first, include=FALSE}
+library(knitr)
+# kable(PhillipsDados)
+library(dplyr)
+library(car)
+library(rstatix)
+library(emmeans)
+library(ggplot2)
+library(kableExtra)
+library(htmltools)
+library(equatiomatic)
+library(gganimate)
+library(av)
+```
+
+
+```{r Gráfico animado, echo=FALSE, warning=FALSE}
+# GRAFICO PIBR POR GOVERNO ANIMADO 2
+dados_tabuas = read.delim('../base_de_dados/banco_de_tabuas.txt',dec = ',', header = T)
+# graficopibr<-ggplot(data=dados_tabuas)+
+#   geom_line(size=1.2, aes(x= x, y=BR.EMSmt.v.2015.m, color = "#23dedb", name= "BR.EMSmt.v.2015.m"), alpha = 0.5)+
+#   geom_line(size=1.2, aes(x= x, y=BR.EMSmt.v.2015.f, color = "#ff6bb0", name= "BR.EMSmt.v.2015.f"), alpha = 0.5)+
+#   geom_line(size=1.2, aes(x= x, y=AMERICAN.EXPERIENCE, color = "#fffb00", name= "AMERICAN EXPERIENCE"), alpha = 0.5)+
+#   labs(title = "COMPARATIVO TÁBUAS DE MORTALIDADE", x= "Idade em anos",y="qx")+
+#   theme_minimal()+
+#   theme(axis.title.x= element_text(size=13),
+#         axis.title.y=element_text(size=13),
+#         axis.text.x=element_text(size=12),
+#         axis.text.y = element_text(size=12),
+#         plot.title = element_text(size=16, hjust = 0.5),
+#         legend.text = element_text(size=12))+
+#   transition_reveal(x)+
+#   scale_color_manual(values = c("#23dedb", "#ff6bb0", "#fffb00"), name = "",
+#                      labels = c("BR.EMSmt.v.2015.m", "BR.EMSmt.v.2015.f", "AMERICAN EXPERIENCE")) +
+#   view_follow(fixed_y= TRUE)
+# animate(graficopibr, nframes=144, fps=18, width = 900, height=500, end_pause = 70)
+```
+
+Ao calcular os prêmios e benefícios dos seguros, as seguradoras utilizam a tábua de mortalidade como base para estimar as probabilidades de ocorrência de eventos, e no presente relatório não foi diferente, para os cálculos dos seguros e anuidades utilizei como ponto de partida a probabilidade de morte *(qx)* da tábua *BR.EMSsb.v.2015.m* que pode ser encontrada no [Banco de tábuas do IBA](https://atuarios.org.br/tabuas-biometricas/).
+
+</p>
+
+<hr class="dotted">
+
+
+Limpando o console:
+
+```{r Limpando o Console}
+rm(list = ls())
+```
+
+Retirando a notação ciêntífica:
+
+```{r Retirando a notação científica}
+options(scipen = 9999)
+options(max.print = 100000)
+```
+
+Carreganto os pacotes necessários:
+
+```{r Pacotes utilizados, warning = FALSE, message = FALSE}
+if (!require("lifecontingencies")) {
+  install.packages("lifecontingencies")
+  library("lifecontingencies")
+}
+```
+
+Base de dados:
+
+```{r Gerando a base de dados, warning=FALSE, message=FALSE}
+dados <- read.table("../base_de_dados/bremsmt2015f.txt", header = TRUE)
+tv_dados <- probs2lifetable(dados$qx, type = "qx", radix = 10000, name = "bremsmt2015f")
+tc_dados <- new("actuarialtable", x = tv_dados@x, lx = tv_dados@lx, name = "Tábua de comutaçao bremsmt2015f", interest = 0.06)
+dados_tabuas = read.delim('../base_de_dados/banco_de_tabuas.txt',dec = ',', header = T)
+```
+
+```{r Pacotes para personalizar o markdown, include=FALSE}
+library(knitr)
+# kable(PhillipsDados)
+library(dplyr)
+library(car)
+library(rstatix)
+library(emmeans)
+library(ggplot2)
+library(kableExtra)
+library(htmltools)
+library(equatiomatic)
+library(gganimate)
+```
+
+Visualização da base de dados:\
+<br>
+
+```{r Visualizando o banco de dados 2, echo=FALSE}
+library(rmarkdown)
+tv_dados
+#paged_table(as.data.frame(tv_dados))
+```
+
+
+```{r Definição de valores, include=FALSE}
+w <- which.max(dados$qx) - 1
+w
+i <- 0.04
+v <- 1 / (1 + i)
+x <- 40
+m <- 30
+n <- 20
+d <- log(1 + i)
+```
+
+```{r Construção das tábuas utilizando o pacote lifecontigencies, warning=FALSE, message=FALSE}
+# Construção da tábua de vida
+tv <- probs2lifetable(dados$qx, type = "qx", radix = 1000, name = "Tábua de vida BR-EMS-mt 2015 feminina")
+
+# Construção da tábua de comutação
+tc <- new("actuarialtable", x = tv@x, lx = tv@lx, name = "Tábua de comutação BR-EMS-mt 2015 feminina", interest = 0.04)
+
+# Cálculo de seguros
+l <- tv@lx
+```
+<br>
+<br>
+
+# 1. Seguros individuais e discretos
+Formulação geral:
+$$ \boxed{A = \sum {v^{t+1} \cdot _{t\scriptsize{|}}q_x}} \\ _{t\scriptsize{|}}q_x = \frac{l_{x+t}-l_{x+t+1}}{l_x} \\ v^{t+1} \rightarrow \text{é utilizado por conta que normalmente a indenização é paga não no momento da morte (t) e sim em t+1} $$
+Dados exercícios seguros individuais e discretos:
+```{r dados1}
+x = 107
+w = 118
+n = 2
+m = 2
+i = 0.05
+v <- 1 / (1 + i)
+```
+##	1.1 Dotal puro de n anos   $\boxed{_nE_x}$
+Manual 📝:
+```{r 1.1}
+tpx <- l[x + n + 1] / l[x + 1]
+nEx <- (v^n) * (tpx)
+nEx
+```
+Pacote 💻:
+```{r 1.1 pacote}
+Exn(tc, x=x, n=n, i=i) # OK
+```
+<hr class="dotted">
+##	1.2 De vida inteira   $\boxed{A_x}$
+Manual:
+```{r 1.2}
+t <- 0:(w - x)
+t.qx <- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
+t.qx <- c(t.qx[!is.na(t.qx)], rep(0, 1))
+Ax <- sum((v^(t + 1)) * t.qx)
+Ax
+```
+Pacote:
+```{r 1.2 pacote}
+Axn(tc, x=x, i=i) # OK
+```
+<hr class="dotted">
+##	1.3 De vida inteira e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_x}$
+Manual:
+```{r 1.3}
+t <- m:(w-x-1)
+t.qx <- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
+t.qx <- c(t.qx[!is.na(t.qx)])
+
+total = 0
+for (aux in m:(w-x-1)) {
+  parcela <- v^(aux+1)*t.qx[aux-m+1]
+  print(paste0("O valor da ", aux, "ª parcela é: ", parcela))
+  total = total + parcela
+}
+print(paste0("O valor total é: ", total))
+mAx <- sum((v^(t + 1)) * t.qx)
+mAx
+```
+Pacote:
+```{r 1.3 pacote}
+Axn(tc, x=x, i=i, m=m) # OK
+```
+<hr class="dotted">
+##	1.4 Temporário de n anos   $\boxed{A^{\small{1}}_{x\ :\ n⃧}}$
+Manual:
+```{r 1.4}
+t <- 0:(n-1)
+t.qx <- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
+Axn <- sum((v^(t + 1)) * t.qx)
+Axn
+```
+Pacote:
+```{r 1.4 pacote}
+Axn(tc, x=x, i=i, n=n) # OK
+```
+<hr class="dotted">
+##	1.5 Temporário de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A^{\small{1}}_{x\ :\ n⃧}}$
+Manual:
+```{r 1.5}
+t <- m:(n+m-1)
+t.qx <- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
+Axn <- sum((v^(t + 1)) * t.qx)
+Axn
+```
+Pacote:
+```{r 1.5 pacote}
+Axn(tc, x=x, i=i, n=n, m=m) # OK
+```
+<hr class="dotted">
+##	1.6 Dotal misto de n anos   $\boxed{A_{x\ :\ n⃧}}$
+Manual:
+```{r 1.6}
+t <- 0:(n-1)
+t.qx <- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
+AxnMISTO <- sum((v^(t + 1)) * t.qx)
+tpx <- l[x + n + 1] / l[x + 1]
+nEx <- (v^n) * (tpx)
+AxnMISTO+nEx
+```
+Pacote:
+```{r 1.6 pacote}
+AExn(tc, x=x, i=i, n=n) #OK
+```
+<hr class="dotted">
+##	1.7 Dotal misto de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{x\ :\ n⃧}}$
+Manual
+```{r 1.7}
+t <- m:(n+m-1)
+t.qx <- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
+AxnMISTO <- sum((v^(t + 1)) * t.qx)
+tpx <- l[x + n + 1] / l[x + 1]
+nEx <- (v^n) * (tpx)
+AxnMISTO+nEx
+```
+Pacote:
+```{r 1.7 pacote}
+# Não há como checar, essa anuidade é apenas para fins didáticos
+```
+<hr class="dotted">
+# 2. Seguros individuais e contínuos
+Formulação geral:
+$$ \bar{A} = \int{v^t \cdot _{t\scriptsize{|}}q_x \ \ \ dt} $$
+$$ v^t \rightarrow \ e^{-\delta t}\\ _{t\scriptsize{|}}q_x \rightarrow \  _tp_x \cdot \mu_{x+t}$$
+$$ \boxed {\bar{A} = \int{e^{-\delta t}\cdot _tp_x \cdot \mu_{x+t} \ \ \ dt}} $$
+Dados utilizados para o cálculo dos seguros individuais e contínuos:
+```{r 2.0 dados}
+IS = "?"
+x = 30
+n = 20
+m = 10
+i = 0.05
+v <- 1 / (1 + i)
+delta = log(1+i)
+```
+##	2.1 Dotal puro de n anos   $\boxed{_nE_x}$
+```{r 2.1}
+tpx <- l[x + n + 1] / l[x + 1]
+nEx <- (v^n) * (tpx)
+nEx
+```
+<hr class="dotted">
+##	2.2 De vida inteira   $\boxed{\bar{A}_x}$
+```{r 2.2}
+t <- 0:(w - x)
+tpx <- function(t) l[x + t + 1] / l[x + 1]
+uxt <- function(t) (l[x + t - 1 + 1] - l[x + t + 1 + 1]) / (2 * l[x + t + 1])
+ft <- function(t) exp(-d * t) * tpx(t) * uxt(t)
+integrate(ft, min(t), max(t), subdivisions = 1000)$value
+```
+<hr class="dotted">
+##	2.3 De vida inteira e diferido de m anos   $\boxed{_{m\scriptsize{|}}\bar{A}_x}$
+```{r 2.3}
+t <- m:(w - x - 1)
+tpx <- function(t) l[x + t + 1] / l[x + 1]
+uxt <- function(t) (l[x + t - 1 + 1] - l[x + t + 1 + 1]) / (2 * l[x + t + 1])
+ft <- function(t) exp(-d * t) * tpx(t) * uxt(t)
+integrate(ft, min(t), max(t), subdivisions = 1000)$value
+```
+<hr class="dotted">
+##	2.4 Temporário de n anos   $\boxed{\bar{A}^{\small{1}}_{x\ :\ n⃧}}$
+```{r 2.4}
+t <- 0:(n - 1)
+tpx <- function(t) l[x + t + 1] / l[x + 1]
+uxt <- function(t) (l[x + t - 1 + 1] - l[x + t + 1 + 1]) / (2 * l[x + t + 1])
+ft <- function(t) exp(-d * t) * tpx(t) * uxt(t)
+integrate(ft, min(t), max(t), subdivisions = 1000)$value
+```
+<hr class="dotted">
+##	2.5 Temporário de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}\bar{A}^{\small{1}}_{x\ :\ n⃧}}$
+```{r 2.5}
+t <- m:(n+m-1)
+tpx <- function(t) l[x + t + 1] / l[x + 1]
+uxt <- function(t) (l[x + t - 1 + 1] - l[x + t + 1 + 1]) / (2 * l[x + t + 1])
+ft <- function(t) exp(-d * t) * tpx(t) * uxt(t)
+integrate(ft, min(t), max(t), subdivisions = 1000)$value
+```
+<hr class="dotted">
+##	2.6 Dotal misto de n anos   $\boxed{\bar{A}_{x\ :\ n⃧}}$
+```{r 2.6}
+t <- 0:(n-1)
+tpx <- function(t) l[x + t + 1] / l[x + 1]
+uxt <- function(t) (l[x + t - 1 + 1] - l[x + t + 1 + 1]) / (2 * l[x + t + 1])
+ft <- function(t) exp(-d * t) * tpx(t) * uxt(t)
+A1xn <- integrate(ft, min(t), max(t), subdivisions = 1000)$value
+tpx <- l[x + n + 1] / l[x + 1]
+nEx <- (v^n) * (tpx)
+A1xn+nEx
+```
+<hr class="dotted">
+##	2.7 Dotal misto de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}\bar{A}_{x\ :\ n⃧}}$
+```{r 2.7}
+t <- m:(n+m-1)
+tpx <- function(t) l[x + t + 1] / l[x + 1]
+uxt <- function(t) (l[x + t - 1 + 1] - l[x + t + 1 + 1]) / (2 * l[x + t + 1])
+ft <- function(t) exp(-d * t) * tpx(t) * uxt(t)
+mA1xn <- integrate(ft, min(t), max(t), subdivisions = 1000)$value
+tpx <- l[x + n + m + 1] / l[x + 1]
+mnEx <- (v^(n+m)) * (tpx)
+mA1xn+mnEx
+```
+<hr class="dotted">
+
+# 3. Anuidades individuais e discretas
+## 3.0 Dados utilizados:
+```{r dados 3.0}
+i <- 0.04
+v <- 1 / (1 + i)
+x <- 40 # Relembrando os valores
+m <- 30
+n <- 20
+```
+## 3.1 Imediata, vitalícia e antecipada   $\boxed{{a ̈}_{\small{x}}}$
+```{r 3.1 manual}
+t <- 0:(w - x)
+t.px <- l[x + t + 1] / l[x + 1]
+axna <- sum(v^t * t.px)
+axna
+```
+```{r 3.1 pacote}
+axn(tc, x = x)
+```
+
+<hr class="dotted">
+## 3.2 Imediata, vitalícia e postecipada   $\boxed{{a}_{\small{x}}}$
+Manual
+```{r 3.2 manual}
+t <- 1:(w - x)
+t.px <- l[x + t + 1] / l[x + 1]
+axnb <- sum(v^t * t.px)
+axnb
+```
+Pacote
+```{r 3.2 pacote}
+axn(tc, x = x, payment = "arrears")
+```
+<hr class="dotted">
+## 3.3 Diferida, vitalícia e antecipada   $\boxed{_{\small{m}}{\ddot{a}}_{\small{x}}}$
+Manual
+```{r 3.3 manual}
+t <- m:(w - x)
+t.px <- l[x + t + 1] / l[x + 1]
+axnc <- sum(v^t * t.px)
+axnc
+```
+Pacote
+```{r 3.3 pacote}
+axn(tc, x = x, m = m)
+```
+<hr class="dotted">
+## 3.4 Diferida, vitalícia e postecipada   $\boxed{_{\small{m}}{{a}}_{\small{x}}}$
+Manual
+```{r 3.4 manual}
+t <- (m + 1):(w - x)
+t.px <- l[x + t + 1] / l[x + 1]
+axnd <- sum(v^t * t.px)
+axnd
+```
+Pacote
+```{r 3.4 pacote}
+axn(tc, x = x, m = m, payment = "arrears")
+```
+<hr class="dotted">
+## 3.5 Imediata, temporária e antecipada   $\boxed{{\ddot{a}}_{\small{x\ :\ n⃧}}}$
+Manual
+```{r 3.5 manual}
+t <- 0:(n - 1)
+t.px <- l[x + t + 1] / l[x + 1]
+axne <- sum(v^t * t.px)
+axne
+
+```
+Pacote
+```{r 3.5 pacote}
+axn(tc, x = x, n = n)
+```
+<hr class="dotted">
+## 3.6 Imediata, temporário e postecipada   $\boxed{{{a}}_{\small{x\ :\ n⃧}}}$
+Manual
+```{r 3.6 manual}
+t <- 1:(n)
+t.px <- l[x + t + 1] / l[x + 1]
+axne <- sum(v^t * t.px)
+axne
+```
+Pacote
+```{r 3.6 pacote}
+axn(tc, x = x, n = n, payment = "arrears")
+```
+<hr class="dotted">
+## 3.7 Diferida, temporária e antecipada   $\boxed{{_{\small{m}}\ddot{a}}_{\small{x\ :\ n⃧}}}$
+Manual
+```{r 3.7 manual}
+t <- m:(m + n - 1)
+t.px <- l[x + t + 1] / l[x + 1]
+axne <- sum(v^t * t.px)
+axne
+```
+Pacote
+```{r 3.7 pacote}
+axn(tc, x = x, m = m, n = n)
+```
+<hr class="dotted">
+## 3.8 Diferida, temporária e postecipada   $\boxed{{_{\small{m}}{a}}_{\small{x\ :\ n⃧}}}$
+Manual
+```{r 3.8 manual}
+t <- (m + 1):(m + n - 1)
+t.px <- l[x + t + 1] / l[x + 1]
+axnh <- sum(v^t * t.px)
+axnh
+```
+Pacote
+```{r 3.8 pacote}
+axn(tc, x = x, m = m, n = n, payment = "arrears")
+```
+<hr class="dotted">
+# 4. Anuidades individuais e contínuas
+## 4.0 Dados utilizados:
+```{r 4.0 dados}
+IS <- 1
+i <- 0.04
+v <- 1 / (1 + i)
+x <- 30 # Relembrando os valores
+m <- 20
+n <- 20
+d <- 0.06
+u <- 0.04
+w <- 100
+```
+## 4.1 Imediata e vitalícia   $\boxed{{\bar{a}}_{\small{x}}}$
+```{r 4.1}
+t <- 0:(w - x)
+tpx <- function(t) exp(-u*t)
+ft <- function(t) IS*exp(-d * t) * tpx(t)
+integrate(ft, min(t), max(t), subdivisions = 1000)$value
+```
+<hr class="dotted">
+## 4.2 Imediata e Temporária   $\boxed{{\bar{a}}_{\small{x\ :\ n⃧}}}$
+```{r 4.2}
+t <- 0:(n)
+tpx <- function(t) exp(-u*t)
+ft <- function(t) IS*exp(-d * t) * tpx(t)
+integrate(ft, min(t), max(t), subdivisions = 1000)$value
+```
+<hr class="dotted">
+## 4.3 Diferida e Vitalícia   $\boxed{_{\small{m}}{{\bar{a}}}_{\small{x}}}$
+```{r 4.3}
+t <- m:(w-x)
+tpx <- function(t) exp(-u*t)
+ft <- function(t) IS*exp(-d * t) * tpx(t)
+integrate(ft, min(t), max(t), subdivisions = 1000)$value
+```
+<hr class="dotted">
+## 4.4 Diferida e Temporária   $\boxed{_{\small{m}}{{\bar{a}}}_{\small{x\ :\ n⃧}}}$
+```{r 4.4}
+t <- m:(m+n)
+tpx <- function(t) exp(-u*t)
+ft <- function(t) IS*exp(-d * t) * tpx(t)
+integrate(ft, min(t), max(t), subdivisions = 1000)$value
+```
+<hr class="dotted">
+
+# 5. Seguro para múltiplas vidas
+##	5.1.1 Dotal puro de n anos (vida conjunta)   $\boxed{_nE_{xy}}$
+<hr class="dotted">
+##	5.1.2 Dotal puro de n anos (ultimo sobrevivente)   $\boxed{_nE_{{\overline{xy}}}}$
+<hr class="dotted">
+##	5.2.1 De vida inteira (vida conjunta)   $\boxed{A_{xy}}$
+<hr class="dotted">
+##	5.2.2 De vida inteira (último sobrevivente)  $\boxed{A_{\overline{xy}}}$
+<hr class="dotted">
+##	5.3.1 De vida inteira e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{xy}}$
+<hr class="dotted">
+##	5.3.2 De vida inteira e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{\overline{xy}}}$
+<hr class="dotted">
+##	5.4.1 Temporário de n anos   $\boxed{A^{\small{1}}_{{xy}\ :\ n⃧}}$
+<hr class="dotted">
+##	5.4.2 Temporário de n anos   $\boxed{A^{\small{1}}_{{\overline{xy}}\ :\ n⃧}}$
+<hr class="dotted">
+##	5.5.1 Temporário de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A^{\small{1}}_{{xy}\ :\ n⃧}}$
+<hr class="dotted">
+##	5.5.2 Temporário de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A^{\small{1}}_{{\overline{xy}}\ :\ n⃧}}$
+<hr class="dotted">
+##	5.6.1 Dotal misto de n anos   $\boxed{A_{{xy}\ :\ n⃧}}$
+<hr class="dotted">
+##	5.6.2 Dotal misto de n anos   $\boxed{A_{{\overline{xy}}\ :\ n⃧}}$
+<hr class="dotted">
+##	5.7.1 Dotal misto de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{{xy}\ :\ n⃧}}$
+<hr class="dotted">
+##	5.7.2 Dotal misto de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{{\overline{xy}}\ :\ n⃧}}$
+<hr class="dotted">
+# 6. Anuidades para múltiplas vidas
+
+# 7. Anuidades reversíveis
+$a_{x|y}\rightarrow \text{caso x faleça, a renda é revertida para y}$
+morte de x -> inicio da reversão
+morte de y -> fim da reversão
+## 7.0 Dados utilizados:
+```{r 7.0 dados}
+
+```
+## 7.1 $\boxed{_nE_{xy}}$
+
+# Referências
+* BOWERS, N. L. et al. Actuarial mathematics. The Society of Actuaries, 1997.
+* CORDEIRO FILHO, Antonio. Cálculo Atuarial Aplicado. 2. ed. São Paulo: Atlas, 2014
+* FinancialandActuarialMathematicsforLifeContingencies [[PDF](https://cran.r-project.org/web/packages/lifecontingencies/lifecontingencies.pdf)].
+* Fernanda Peres: Rmarkdown. [Canal do Youtube](https://www.youtube.com/c/FernandaPeres).
+
+

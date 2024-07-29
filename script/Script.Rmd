@@ -1,0 +1,42 @@
+---
+title: "Relatório Matemática Atuarial"
+author: "João Guilherme Pereira dos Santos"
+date: "31 de Outubro de 2022"
+output:
+  rmdformats::downcute:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "C:/Users/55819/Desktop/6 Período/Matemática Atuarial 1/RMarkdown - Relatório/Banco de dados")
+```
+
+## Base de dados
+
+
+
+```{r base de dados}
+dados <- read.table("tabua.txt", header = TRUE)
+dados
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# Curva de Phillips (Forward-Looking)
+
+$$\pi _t = \alpha ^f_1+\pi_{t-1}+\alpha^f_2E_t(\pi_{t+1})+\alpha^f_3h_{t-1}+\alpha^f_4\Delta (p^F_t+e_t)+\varepsilon ^f_t+\small{_m}A_{x:n\large{⃧}}\   $$
+$$\pi _t = \alpha ^f_1+\pi_{t-1}+\alpha^f_2E_t(\pi_{t+1})+\alpha^f_3h_{t-1}+\alpha^f_4\Delta (p^F_t+e_t)+\varepsilon ^f_t+_{_m}A^{^{\small{1}}}_{x\ :\ n{⃧}}\   $$
+$$\pi _t = \alpha ^f_1+\pi_{t-1}+\alpha^f_2E_t(\pi_{t+1})+\alpha^f_3h_{t-1}+\alpha^f_4\Delta (p^F_t+e_t)+\varepsilon ^f_t+_mA^{^{1}}_{x:n{⃧}}\   $$
