@@ -1909,14 +1909,14 @@ nEx</code></pre>
 </div>
 <div id="de-vida-inteira-boxeda_x" class="section level2">
 <h2>1.2 De vida inteira <span class="math inline">\(\boxed{A_x}\)</span></h2>
-<p>Manual:</p>
+<p>Manual 📝:</p>
 <pre class="r"><code>t &lt;- 0:(w - x)
 t.qx &lt;- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
 t.qx &lt;- c(t.qx[!is.na(t.qx)], rep(0, 1))
 Ax &lt;- sum((v^(t + 1)) * t.qx)
 Ax</code></pre>
 <pre><code>## [1] 0.9060899</code></pre>
-<p>Pacote:</p>
+<p>Pacote 💻:</p>
 <pre class="r"><code>Axn(tc, x=x, i=i) # OK</code></pre>
 <pre><code>## [1] 0.90609</code></pre>
 <hr class="dotted">
@@ -1948,20 +1948,20 @@ for (aux in m:(w-x-1)) {
 <pre class="r"><code>mAx &lt;- sum((v^(t + 1)) * t.qx)
 mAx</code></pre>
 <pre><code>## [1] 0.2360798</code></pre>
-<p>Pacote:</p>
+<p>Pacote 💻:</p>
 <pre class="r"><code>Axn(tc, x=x, i=i, m=m) # OK</code></pre>
 <pre><code>## [1] 0.2360799</code></pre>
 <hr class="dotted">
 </div>
 <div id="temporário-de-n-anos-boxedasmall1_x-n" class="section level2">
 <h2>1.4 Temporário de n anos <span class="math inline">\(\boxed{A^{\small{1}}_{x\ :\ n⃧}}\)</span></h2>
-<p>Manual:</p>
+<p>Manual 📝:</p>
 <pre class="r"><code>t &lt;- 0:(n-1)
 t.qx &lt;- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
 Axn &lt;- sum((v^(t + 1)) * t.qx)
 Axn</code></pre>
 <pre><code>## [1] 0.6700101</code></pre>
-<p>Pacote:</p>
+<p>Pacote 💻:</p>
 <pre class="r"><code>Axn(tc, x=x, i=i, n=n) # OK</code></pre>
 <pre><code>## [1] 0.6700101</code></pre>
 <hr class="dotted">
@@ -1969,13 +1969,13 @@ Axn</code></pre>
 <div id="temporário-de-n-anos-e-diferido-de-m-anos-boxed_mscriptsizeasmall1_x-n" class="section level2">
 <h2>1.5 Temporário de n anos e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A^{\small{1}}_{x\ :\
 n⃧}}\)</span></h2>
-<p>Manual:</p>
+<p>Manual 📝:</p>
 <pre class="r"><code>t &lt;- m:(n+m-1)
 t.qx &lt;- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
 Axn &lt;- sum((v^(t + 1)) * t.qx)
 Axn</code></pre>
 <pre><code>## [1] 0.1915637</code></pre>
-<p>Pacote:</p>
+<p>Pacote 💻:</p>
 <pre class="r"><code>Axn(tc, x=x, i=i, n=n, m=m) # OK</code></pre>
 <pre><code>## [1] 0.1915637</code></pre>
 <hr class="dotted">
@@ -1983,7 +1983,7 @@ Axn</code></pre>
 <div id="dotal-misto-de-n-anos-boxeda_x-n" class="section level2">
 <h2>1.6 Dotal misto de n anos <span class="math inline">\(\boxed{A_{x\
 :\ n⃧}}\)</span></h2>
-<p>Manual:</p>
+<p>Manual 📝:</p>
 <pre class="r"><code>t &lt;- 0:(n-1)
 t.qx &lt;- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
 AxnMISTO &lt;- sum((v^(t + 1)) * t.qx)
@@ -1991,7 +1991,7 @@ tpx &lt;- l[x + n + 1] / l[x + 1]
 nEx &lt;- (v^n) * (tpx)
 AxnMISTO+nEx</code></pre>
 <pre><code>## [1] 0.9273815</code></pre>
-<p>Pacote:</p>
+<p>Pacote 💻:</p>
 <pre class="r"><code>AExn(tc, x=x, i=i, n=n) #OK</code></pre>
 <pre><code>## [1] 0.9273815</code></pre>
 <hr class="dotted">
@@ -1999,7 +1999,7 @@ AxnMISTO+nEx</code></pre>
 <div id="dotal-misto-de-n-anos-e-diferido-de-m-anos-boxed_mscriptsizea_x-n" class="section level2">
 <h2>1.7 Dotal misto de n anos e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A_{x\ :\
 n⃧}}\)</span></h2>
-<p>Manual</p>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- m:(n+m-1)
 t.qx &lt;- (l[x + t + 1] - l[x + t + 1 + 1]) / l[x + 1]
 AxnMISTO &lt;- sum((v^(t + 1)) * t.qx)
@@ -2007,7 +2007,7 @@ tpx &lt;- l[x + n + 1] / l[x + 1]
 nEx &lt;- (v^n) * (tpx)
 AxnMISTO+nEx</code></pre>
 <pre><code>## [1] 0.4489351</code></pre>
-<p>Pacote:</p>
+<p>Pacote 💻:</p>
 <pre class="r"><code># Não há como checar, essa anuidade é apenas para fins didáticos</code></pre>
 <hr class="dotted">
 </div>
@@ -2117,6 +2117,7 @@ n &lt;- 20</code></pre>
 </div>
 <div id="imediata-vitalícia-e-antecipada-boxeda-_smallx" class="section level2">
 <h2>3.1 Imediata, vitalícia e antecipada <span class="math inline">\(\boxed{{a ̈}_{\small{x}}}\)</span></h2>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- 0:(w - x)
 t.px &lt;- l[x + t + 1] / l[x + 1]
 axna &lt;- sum(v^t * t.px)
@@ -2128,46 +2129,46 @@ axna</code></pre>
 </div>
 <div id="imediata-vitalícia-e-postecipada-boxeda_smallx" class="section level2">
 <h2>3.2 Imediata, vitalícia e postecipada <span class="math inline">\(\boxed{{a}_{\small{x}}}\)</span></h2>
-<p>Manual</p>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- 1:(w - x)
 t.px &lt;- l[x + t + 1] / l[x + 1]
 axnb &lt;- sum(v^t * t.px)
 axnb</code></pre>
 <pre><code>## [1] 20.07917</code></pre>
-<p>Pacote</p>
+<p>Pacote 💻</p>
 <pre class="r"><code>axn(tc, x = x, payment = &quot;arrears&quot;)</code></pre>
 <pre><code>## [1] 20.07917</code></pre>
 <hr class="dotted">
 </div>
 <div id="diferida-vitalícia-e-antecipada-boxed_smallmddota_smallx" class="section level2">
 <h2>3.3 Diferida, vitalícia e antecipada <span class="math inline">\(\boxed{_{\small{m}}{\ddot{a}}_{\small{x}}}\)</span></h2>
-<p>Manual</p>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- m:(w - x)
 t.px &lt;- l[x + t + 1] / l[x + 1]
 axnc &lt;- sum(v^t * t.px)
 axnc</code></pre>
 <pre><code>## [1] 3.566501</code></pre>
-<p>Pacote</p>
+<p>Pacote 💻</p>
 <pre class="r"><code>axn(tc, x = x, m = m)</code></pre>
 <pre><code>## [1] 3.566501</code></pre>
 <hr class="dotted">
 </div>
 <div id="diferida-vitalícia-e-postecipada-boxed_smallma_smallx" class="section level2">
 <h2>3.4 Diferida, vitalícia e postecipada <span class="math inline">\(\boxed{_{\small{m}}{{a}}_{\small{x}}}\)</span></h2>
-<p>Manual</p>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- (m + 1):(w - x)
 t.px &lt;- l[x + t + 1] / l[x + 1]
 axnd &lt;- sum(v^t * t.px)
 axnd</code></pre>
 <pre><code>## [1] 3.29455</code></pre>
-<p>Pacote</p>
+<p>Pacote 💻</p>
 <pre class="r"><code>axn(tc, x = x, m = m, payment = &quot;arrears&quot;)</code></pre>
 <pre><code>## [1] 3.29455</code></pre>
 <hr class="dotted">
 </div>
 <div id="imediata-temporária-e-antecipada-boxedddota_smallx-n" class="section level2">
 <h2>3.5 Imediata, temporária e antecipada <span class="math inline">\(\boxed{{\ddot{a}}_{\small{x\ :\ n⃧}}}\)</span></h2>
-<p>Manual</p>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- 0:(n - 1)
 t.px &lt;- l[x + t + 1] / l[x + 1]
 axne &lt;- sum(v^t * t.px)
@@ -2180,13 +2181,13 @@ axne</code></pre>
 </div>
 <div id="imediata-temporário-e-postecipada-boxeda_smallx-n" class="section level2">
 <h2>3.6 Imediata, temporário e postecipada <span class="math inline">\(\boxed{{{a}}_{\small{x\ :\ n⃧}}}\)</span></h2>
-<p>Manual</p>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- 1:(n)
 t.px &lt;- l[x + t + 1] / l[x + 1]
 axne &lt;- sum(v^t * t.px)
 axne</code></pre>
 <pre><code>## [1] 13.37814</code></pre>
-<p>Pacote</p>
+<p>Pacote 💻</p>
 <pre class="r"><code>axn(tc, x = x, n = n, payment = &quot;arrears&quot;)</code></pre>
 <pre><code>## [1] 13.37814</code></pre>
 <hr class="dotted">
@@ -2194,13 +2195,13 @@ axne</code></pre>
 <div id="diferida-temporária-e-antecipada-boxed_smallmddota_smallx-n" class="section level2">
 <h2>3.7 Diferida, temporária e antecipada <span class="math inline">\(\boxed{{_{\small{m}}\ddot{a}}_{\small{x\ :\
 n⃧}}}\)</span></h2>
-<p>Manual</p>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- m:(m + n - 1)
 t.px &lt;- l[x + t + 1] / l[x + 1]
 axne &lt;- sum(v^t * t.px)
 axne</code></pre>
 <pre><code>## [1] 3.240619</code></pre>
-<p>Pacote</p>
+<p>Pacote 💻</p>
 <pre class="r"><code>axn(tc, x = x, m = m, n = n)</code></pre>
 <pre><code>## [1] 3.240619</code></pre>
 <hr class="dotted">
@@ -2208,13 +2209,13 @@ axne</code></pre>
 <div id="diferida-temporária-e-postecipada-boxed_smallma_smallx-n" class="section level2">
 <h2>3.8 Diferida, temporária e postecipada <span class="math inline">\(\boxed{{_{\small{m}}{a}}_{\small{x\ :\
 n⃧}}}\)</span></h2>
-<p>Manual</p>
+<p>Manual 📝</p>
 <pre class="r"><code>t &lt;- (m + 1):(m + n - 1)
 t.px &lt;- l[x + t + 1] / l[x + 1]
 axnh &lt;- sum(v^t * t.px)
 axnh</code></pre>
 <pre><code>## [1] 2.968668</code></pre>
-<p>Pacote</p>
+<p>Pacote 💻</p>
 <pre class="r"><code>axn(tc, x = x, m = m, n = n, payment = &quot;arrears&quot;)</code></pre>
 <pre><code>## [1] 3.027186</code></pre>
 <hr class="dotted">
