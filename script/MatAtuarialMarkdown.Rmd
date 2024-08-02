@@ -580,33 +580,130 @@ integrate(ft, min(t), max(t), subdivisions = 1000)$value
 <hr class="dotted">
 
 # 5. Seguro para múltiplas vidas
+
+# 5.0 Dados Utilizados
+```{r 5.0 Dados Utilizados}
+IS <- 1
+i <- 0.04
+v <- 1 / (1 + i)
+x <- 30 # Relembrando os valores
+y <- 25
+m <- 20
+n <- 20
+d <- 0.06
+u <- 0.04
+w <- 100
+```
 ##	5.1.1 Dotal puro de n anos (vida conjunta)   $\boxed{_nE_{xy}}$
+Manual 📝
+```{r 5.1.1 manual}
+```
+Pacote 💻
+```{r 5.1.1 pacote}
+
+```
 <hr class="dotted">
 ##	5.1.2 Dotal puro de n anos (ultimo sobrevivente)   $\boxed{_nE_{{\overline{xy}}}}$
+Manual 📝
+```{r 5.1.2 manual}
+
+```
+Pacote 💻
+```{r 5.1.2 pacote}
+
+```
 <hr class="dotted">
 ##	5.2.1 De vida inteira (vida conjunta)   $\boxed{A_{xy}}$
+Manual 📝
+```{r 5.2.1 manual}
+t <- 0:(w-x-1)#;t
+produto=sum(v^(t+1)*(l[x+t]*l[y+t]-l[x+t+1]*l[y+t+1])/(l[x]*l[y]));produto
+```
+Pacote 💻
+```{r 5.2.1 pacote}
+listOfTables = list(tv, tv)
+Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04, status = "joint");
+Axyzn
+```
 <hr class="dotted">
 ##	5.2.2 De vida inteira (último sobrevivente)  $\boxed{A_{\overline{xy}}}$
+Manual 📝
+```{r 5.2.2 manual}
+total = 0
+for (aux in 0:(w-y)) {
+  if (!is.na(l[x+aux]/l[x])) {
+  p1 <- l[x+aux]/l[x]
+} else {
+  p1 <- 0
+}
+  if (!is.na(l[y+aux]/l[y])) {
+  p2 <- l[y+aux]/l[y]
+} else {
+  p2 <- 0
+}
+  if (!is.na(l[x+aux+1]/l[x])) {
+  p3 <- l[x+aux+1]/l[x]
+} else {
+  p3 <- 0
+}
+  if (!is.na(l[y+aux+1]/l[y])) {
+  p4 <- l[y+aux+1]/l[y]
+} else {
+  p4 <- 0
+}
+  parcela <- v^(aux+1)*((p1+p2-p1*p2)-(p3+p4-p3*p4));
+  #print(paste0("O valor da ", aux, " parcela é: ", parcela))
+  total = total + parcela
+}
+produto = total
+print(paste0("O valor total é: ", total))
+```
+Pacote 💻
+```{r 5.2.2 pacote}
+listOfTables = list(tv, tv)
+Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04,status = "last");
+Axyzn
+```
 <hr class="dotted">
 ##	5.3.1 De vida inteira e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{xy}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.3.2 De vida inteira e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{\overline{xy}}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.4.1 Temporário de n anos   $\boxed{A^{\small{1}}_{{xy}\ :\ n⃧}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.4.2 Temporário de n anos   $\boxed{A^{\small{1}}_{{\overline{xy}}\ :\ n⃧}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.5.1 Temporário de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A^{\small{1}}_{{xy}\ :\ n⃧}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.5.2 Temporário de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A^{\small{1}}_{{\overline{xy}}\ :\ n⃧}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.6.1 Dotal misto de n anos   $\boxed{A_{{xy}\ :\ n⃧}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.6.2 Dotal misto de n anos   $\boxed{A_{{\overline{xy}}\ :\ n⃧}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.7.1 Dotal misto de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{{xy}\ :\ n⃧}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 ##	5.7.2 Dotal misto de n anos e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{{\overline{xy}}\ :\ n⃧}}$
+Manual 📝
+Pacote 💻
 <hr class="dotted">
 # 6. Anuidades para múltiplas vidas
 

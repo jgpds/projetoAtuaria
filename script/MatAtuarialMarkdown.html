@@ -2275,65 +2275,136 @@ integrate(ft, min(t), max(t), subdivisions = 1000)$value</code></pre>
 </div>
 <div id="seguro-para-múltiplas-vidas" class="section level1">
 <h1>5. Seguro para múltiplas vidas</h1>
+</div>
+<div id="dados-utilizados-2" class="section level1">
+<h1>5.0 Dados Utilizados</h1>
+<pre class="r"><code>IS &lt;- 1
+i &lt;- 0.04
+v &lt;- 1 / (1 + i)
+x &lt;- 30 # Relembrando os valores
+y &lt;- 25
+m &lt;- 20
+n &lt;- 20
+d &lt;- 0.06
+u &lt;- 0.04
+w &lt;- 100</code></pre>
 <div id="dotal-puro-de-n-anos-vida-conjunta-boxed_ne_xy" class="section level2">
 <h2>5.1.1 Dotal puro de n anos (vida conjunta) <span class="math inline">\(\boxed{_nE_{xy}}\)</span></h2>
+<p>Manual 📝</p>
+<p>Pacote 💻</p>
 <hr class="dotted">
 </div>
 <div id="dotal-puro-de-n-anos-ultimo-sobrevivente-boxed_ne_overlinexy" class="section level2">
 <h2>5.1.2 Dotal puro de n anos (ultimo sobrevivente) <span class="math inline">\(\boxed{_nE_{{\overline{xy}}}}\)</span></h2>
+<p>Manual 📝</p>
+<p>Pacote 💻</p>
 <hr class="dotted">
 </div>
 <div id="de-vida-inteira-vida-conjunta-boxeda_xy" class="section level2">
 <h2>5.2.1 De vida inteira (vida conjunta) <span class="math inline">\(\boxed{A_{xy}}\)</span></h2>
+<p>Manual 📝</p>
+<pre class="r"><code>t &lt;- 0:(w-x-1)#;t
+produto=sum(v^(t+1)*(l[x+t]*l[y+t]-l[x+t+1]*l[y+t+1])/(l[x]*l[y]));produto</code></pre>
+<pre><code>## [1] 0.1538561</code></pre>
+<p>Pacote 💻</p>
+<pre class="r"><code>listOfTables = list(tv, tv)
+Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04, status = &quot;joint&quot;);
+Axyzn</code></pre>
+<pre><code>## [1] 0.1607419</code></pre>
 <hr class="dotted">
 </div>
 <div id="de-vida-inteira-último-sobrevivente-boxeda_overlinexy" class="section level2">
 <h2>5.2.2 De vida inteira (último sobrevivente) <span class="math inline">\(\boxed{A_{\overline{xy}}}\)</span></h2>
+<p>Manual 📝</p>
+<pre class="r"><code>total = 0
+for (aux in 0:(w-y)) {
+  if (!is.na(l[x+aux]/l[x])) {
+  p1 &lt;- l[x+aux]/l[x]
+} else {
+  p1 &lt;- 0
+}
+  if (!is.na(l[y+aux]/l[y])) {
+  p2 &lt;- l[y+aux]/l[y]
+} else {
+  p2 &lt;- 0
+}
+  if (!is.na(l[x+aux+1]/l[x])) {
+  p3 &lt;- l[x+aux+1]/l[x]
+} else {
+  p3 &lt;- 0
+}
+  if (!is.na(l[y+aux+1]/l[y])) {
+  p4 &lt;- l[y+aux+1]/l[y]
+} else {
+  p4 &lt;- 0
+}
+  parcela &lt;- v^(aux+1)*((p1+p2-p1*p2)-(p3+p4-p3*p4));
+  #print(paste0(&quot;O valor da &quot;, aux, &quot; parcela é: &quot;, parcela))
+  total = total + parcela
+}
+produto = total
+print(paste0(&quot;O valor total é: &quot;, total))</code></pre>
+<pre><code>## [1] &quot;O valor total é: 0.0749300970633918&quot;</code></pre>
+<p>Pacote 💻</p>
+<pre class="r"><code>listOfTables = list(tv, tv)
+Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04,status = &quot;last&quot;);
+Axyzn</code></pre>
+<pre><code>## [1] 0.08171006</code></pre>
 <hr class="dotted">
 </div>
 <div id="de-vida-inteira-e-diferido-de-m-anos-boxed_mscriptsizea_xy" class="section level2">
 <h2>5.3.1 De vida inteira e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A_{xy}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="de-vida-inteira-e-diferido-de-m-anos-boxed_mscriptsizea_overlinexy" class="section level2">
 <h2>5.3.2 De vida inteira e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A_{\overline{xy}}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="temporário-de-n-anos-boxedasmall1_xy-n" class="section level2">
 <h2>5.4.1 Temporário de n anos <span class="math inline">\(\boxed{A^{\small{1}}_{{xy}\ :\ n⃧}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="temporário-de-n-anos-boxedasmall1_overlinexy-n" class="section level2">
 <h2>5.4.2 Temporário de n anos <span class="math inline">\(\boxed{A^{\small{1}}_{{\overline{xy}}\ :\
 n⃧}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="temporário-de-n-anos-e-diferido-de-m-anos-boxed_mscriptsizeasmall1_xy-n" class="section level2">
 <h2>5.5.1 Temporário de n anos e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A^{\small{1}}_{{xy}\ :\
 n⃧}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="temporário-de-n-anos-e-diferido-de-m-anos-boxed_mscriptsizeasmall1_overlinexy-n" class="section level2">
 <h2>5.5.2 Temporário de n anos e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A^{\small{1}}_{{\overline{xy}}\
 :\ n⃧}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="dotal-misto-de-n-anos-boxeda_xy-n" class="section level2">
 <h2>5.6.1 Dotal misto de n anos <span class="math inline">\(\boxed{A_{{xy}\ :\ n⃧}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="dotal-misto-de-n-anos-boxeda_overlinexy-n" class="section level2">
 <h2>5.6.2 Dotal misto de n anos <span class="math inline">\(\boxed{A_{{\overline{xy}}\ :\ n⃧}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="dotal-misto-de-n-anos-e-diferido-de-m-anos-boxed_mscriptsizea_xy-n" class="section level2">
 <h2>5.7.1 Dotal misto de n anos e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A_{{xy}\ :\
 n⃧}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 <div id="dotal-misto-de-n-anos-e-diferido-de-m-anos-boxed_mscriptsizea_overlinexy-n" class="section level2">
 <h2>5.7.2 Dotal misto de n anos e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A_{{\overline{xy}}\ :\
 n⃧}}\)</span></h2>
+Manual 📝 Pacote 💻
 <hr class="dotted">
 </div>
 </div>
