@@ -583,24 +583,26 @@ integrate(ft, min(t), max(t), subdivisions = 1000)$value
 
 # 5.0 Dados Utilizados
 ```{r 5.0 Dados Utilizados}
-IS <- 1
-i <- 0.04
-v <- 1 / (1 + i)
-x <- 30 # Relembrando os valores
-y <- 25
-m <- 20
-n <- 20
-d <- 0.06
-u <- 0.04
-w <- 100
+x = 31 # Thiago (coloquei 31 para facilitar os cálculos)
+y = 26 # Fernanda (Coloquei 26 para facilitar os cálculos)
+z = 6 # Cauê (Coloquei 6 para facilitar os cálculos)
+i = 0.04
+v = 1/(1+i)
+n = 10
+m = 30
+w = 119
 ```
 ##	5.1.1 Dotal puro de n anos (vida conjunta)   $\boxed{_nE_{xy}}$
 Manual 📝
 ```{r 5.1.1 manual}
+tpxy <- l[x + n + 1] / l[x + 1] * l[y + n + 1] / l[y + 1]
+nExy <- v^n * tpxy
+nExy
 ```
 Pacote 💻
 ```{r 5.1.1 pacote}
-
+listOfTables = list(tv, tv)
+v^n * pxyzt(listOfTables, x = c(x, y), t = n, status = "joint")
 ```
 <hr class="dotted">
 ##	5.1.2 Dotal puro de n anos (ultimo sobrevivente)   $\boxed{_nE_{{\overline{xy}}}}$
@@ -616,6 +618,7 @@ Pacote 💻
 ##	5.2.1 De vida inteira (vida conjunta)   $\boxed{A_{xy}}$
 Manual 📝
 ```{r 5.2.1 manual}
+
 t <- 0:(w-x-1)#;t
 produto=sum(v^(t+1)*(l[x+t]*l[y+t]-l[x+t+1]*l[y+t+1])/(l[x]*l[y]));produto
 ```
