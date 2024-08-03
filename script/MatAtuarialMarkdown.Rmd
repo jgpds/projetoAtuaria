@@ -625,7 +625,7 @@ produto=sum(v^(t+1)*(l[x+t]*l[y+t]-l[x+t+1]*l[y+t+1])/(l[x]*l[y]));produto
 Pacote 💻
 ```{r 5.2.1 pacote}
 listOfTables = list(tv, tv)
-Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04, status = "joint");
+Axyzn = Axyzn(listOfTables, x=c(30, 25), i= i, status = "joint");
 Axyzn
 ```
 <hr class="dotted">
@@ -670,7 +670,17 @@ Axyzn
 <hr class="dotted">
 ##	5.3.1 De vida inteira e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{xy}}$
 Manual 📝
+```{r 5.3.1 manual}
+
+t <- m:(w-x-1)#;t
+produto=sum(v^(t+1)*(l[x+t]*l[y+t]-l[x+t+1]*l[y+t+1])/(l[x]*l[y]));produto
+```
 Pacote 💻
+```{r 5.3.1 pacote}
+listOfTables = list(tv, tv)
+Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04, m = m, status = "joint");
+Axyzn
+```
 <hr class="dotted">
 ##	5.3.2 De vida inteira e diferido de m anos   $\boxed{_{m\scriptsize{|}}A_{\overline{xy}}}$
 Manual 📝

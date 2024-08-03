@@ -2278,20 +2278,25 @@ integrate(ft, min(t), max(t), subdivisions = 1000)$value</code></pre>
 </div>
 <div id="dados-utilizados-2" class="section level1">
 <h1>5.0 Dados Utilizados</h1>
-<pre class="r"><code>IS &lt;- 1
-i &lt;- 0.04
-v &lt;- 1 / (1 + i)
-x &lt;- 30 # Relembrando os valores
-y &lt;- 25
-m &lt;- 20
-n &lt;- 20
-d &lt;- 0.06
-u &lt;- 0.04
-w &lt;- 100</code></pre>
+<pre class="r"><code>x = 31 # Thiago (coloquei 31 para facilitar os cálculos)
+y = 26 # Fernanda (Coloquei 26 para facilitar os cálculos)
+z = 6 # Cauê (Coloquei 6 para facilitar os cálculos)
+i = 0.04
+v = 1/(1+i)
+n = 10
+m = 30
+w = 119</code></pre>
 <div id="dotal-puro-de-n-anos-vida-conjunta-boxed_ne_xy" class="section level2">
 <h2>5.1.1 Dotal puro de n anos (vida conjunta) <span class="math inline">\(\boxed{_nE_{xy}}\)</span></h2>
 <p>Manual 📝</p>
+<pre class="r"><code>tpxy &lt;- l[x + n + 1] / l[x + 1] * l[y + n + 1] / l[y + 1]
+nExy &lt;- v^n * tpxy
+nExy</code></pre>
+<pre><code>## [1] 0.6674706</code></pre>
 <p>Pacote 💻</p>
+<pre class="r"><code>listOfTables = list(tv, tv)
+v^n * pxyzt(listOfTables, x = c(x, y), t = n, status = &quot;joint&quot;)</code></pre>
+<pre><code>## [1] 0.6674706</code></pre>
 <hr class="dotted">
 </div>
 <div id="dotal-puro-de-n-anos-ultimo-sobrevivente-boxed_ne_overlinexy" class="section level2">
@@ -2305,10 +2310,10 @@ w &lt;- 100</code></pre>
 <p>Manual 📝</p>
 <pre class="r"><code>t &lt;- 0:(w-x-1)#;t
 produto=sum(v^(t+1)*(l[x+t]*l[y+t]-l[x+t+1]*l[y+t+1])/(l[x]*l[y]));produto</code></pre>
-<pre><code>## [1] 0.1538561</code></pre>
+<pre><code>## [1] 0.1607419</code></pre>
 <p>Pacote 💻</p>
 <pre class="r"><code>listOfTables = list(tv, tv)
-Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04, status = &quot;joint&quot;);
+Axyzn = Axyzn(listOfTables, x=c(30, 25), i= i, status = &quot;joint&quot;);
 Axyzn</code></pre>
 <pre><code>## [1] 0.1607419</code></pre>
 <hr class="dotted">
@@ -2344,7 +2349,7 @@ for (aux in 0:(w-y)) {
 }
 produto = total
 print(paste0(&quot;O valor total é: &quot;, total))</code></pre>
-<pre><code>## [1] &quot;O valor total é: 0.0749300970633918&quot;</code></pre>
+<pre><code>## [1] &quot;O valor total é: 0.0817100630660706&quot;</code></pre>
 <p>Pacote 💻</p>
 <pre class="r"><code>listOfTables = list(tv, tv)
 Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04,status = &quot;last&quot;);
@@ -2354,7 +2359,15 @@ Axyzn</code></pre>
 </div>
 <div id="de-vida-inteira-e-diferido-de-m-anos-boxed_mscriptsizea_xy" class="section level2">
 <h2>5.3.1 De vida inteira e diferido de m anos <span class="math inline">\(\boxed{_{m\scriptsize{|}}A_{xy}}\)</span></h2>
-Manual 📝 Pacote 💻
+<p>Manual 📝</p>
+<pre class="r"><code>t &lt;- m:(w-x-1)#;t
+produto=sum(v^(t+1)*(l[x+t]*l[y+t]-l[x+t+1]*l[y+t+1])/(l[x]*l[y]));produto</code></pre>
+<pre><code>## [1] 0.1202948</code></pre>
+<p>Pacote 💻</p>
+<pre class="r"><code>listOfTables = list(tv, tv)
+Axyzn = Axyzn(listOfTables, x=c(30, 25), i= 0.04, m = m, status = &quot;joint&quot;);
+Axyzn</code></pre>
+<pre><code>## [1] 0.1202948</code></pre>
 <hr class="dotted">
 </div>
 <div id="de-vida-inteira-e-diferido-de-m-anos-boxed_mscriptsizea_overlinexy" class="section level2">
