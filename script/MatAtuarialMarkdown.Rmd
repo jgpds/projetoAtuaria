@@ -687,7 +687,7 @@ morte de y -> fim da reversão
 <p class="justify"> Neste regime as contribuições dos participantes são acumuladas e investidas para gerar um fundo que será usado para pagar os benefícios futuros, acumulando reservas financeiras ao longo do tempo, sendo típico em planos de previdência privada. </p>
 
 ## Regime de Repartição de Capitais de Cobertura
-<p class="justify"> Esse regime combina características dos regimes de repartição simples e capitalização, acumulando um fundo para garantir a solvência a curto e médio prazo, mas não necessariamente para a totalidade dos benefícios futuros. </p>
+<p class="justify"> Esse regime combina características dos regimes de repartição simples e capitalização, acumulando um fundo para garantir a solvência a curto e médio prazo, mas não necessariamente para a totalidade dos benefícios futuros </p>
 
 
 
