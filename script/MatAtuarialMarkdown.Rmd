@@ -6,7 +6,7 @@ output:
     html_document:
        highlight: textmate
        includes:
-         in_header: "../cabecalho.html"
+         in_header: "../header/cabecalho.html"
        theme: flatly
        number_sections: no
        toc: yes
