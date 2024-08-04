@@ -724,11 +724,30 @@ Pacote 💻
 $a_{x|y}\rightarrow \text{caso x faleça, a renda é revertida para y}$
 morte de x -> inicio da reversão
 morte de y -> fim da reversão
+
 ## 7.0 Dados utilizados:
 ```{r 7.0 dados}
 
 ```
 ## 7.1 $\boxed{_nE_{xy}}$
+
+# 4. Regimes Financeiros
+<p class="justify"> Os regimes financeiros referem-se à forma como as contribuições são acumuladas e como os benefícios são pagos ao longo do tempo. Existem três principais regimes financeiros: </p>
+
+<img src="../imgs/regimes_financeiros2.png" alt="Regimes Financeiros">
+
+## Regime de Repartição Simples (PAYG - Pay-As-You-Go)
+
+<p class="justify"> Neste regime as contribuições dos participantes ativos são usadas para pagar os benefícios dos aposentados atuais, sem acumulação de fundos, de modo que as receitas e despesas devem se equilibrar anualmente. Este regime é comum em sistemas públicos de previdência social. </p>
+
+## Regime de Capitalização
+
+<p class="justify"> Neste regime as contribuições dos participantes são acumuladas e investidas para gerar um fundo que será usado para pagar os benefícios futuros, acumulando reservas financeiras ao longo do tempo, sendo típico em planos de previdência privada. </p>
+
+## Regime de Repartição de Capitais de Cobertura
+<p class="justify"> Esse regime combina características dos regimes de repartição simples e capitalização, acumulando um fundo para garantir a solvência a curto e médio prazo, mas não necessariamente para a totalidade dos benefícios futuros. </p>
+
+
 
 # Referências
 * BOWERS, N. L. et al. Actuarial mathematics. The Society of Actuaries, 1997.
