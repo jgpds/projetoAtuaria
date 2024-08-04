@@ -1,0 +1,52 @@
+.list-group-item{
+    background-color: transparent;
+  }
+  body {
+    background-image: url("../imgs/f5.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  
+  .tocify-item.list-group-item.active {
+      background-color: #75CFB8;
+  }
+  
+  .btn.btn-default.btn-xs.btn-secondary.btn-sm {
+      background-color: #75CFB8;
+  }
+  
+  .btn-default:hover {
+      background-color: #68b09e;
+      border-color: #ffffff
+  }
+  
+  .btn-default {
+      background-color: #68b09e;
+      border-color: #75CFB8
+  }
+  
+  .dropdown-menu>li>a:hover{
+      background-color: #75CFB8;
+  }
+  
+  .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
+      background-color: #75CFB8;
+  }
+  
+  /* .btn.btn-default.btn-xs.btn-secondary.btn-sm dropdown-toggle{
+    <span>Código</span>
+  } */
+  
+  .justify {
+    text-align: justify;
+  }
+  
+  hr.dotted{
+      width: 10%;
+      border-style: dotted none none;
+      border-width: 7px;
+      border-color: #8e918a;
+  }

@@ -21,69 +21,11 @@ output:
 <br>
 
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Montserrat:wght@100;400;900&family=Reenie+Beanie&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
 </head>
-
-
-<style>
-.list-group-item{
-  background-color: transparent;
-}
-body {
-  background-image: url("f4.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-
-.tocify-item.list-group-item.active {
-    background-color: #75CFB8;
-}
-
-.btn.btn-default.btn-xs.btn-secondary.btn-sm {
-    background-color: #75CFB8;
-}
-
-.btn-default:hover {
-    background-color: #68b09e;
-    border-color: #ffffff
-}
-
-.btn-default {
-    background-color: #68b09e;
-    border-color: #75CFB8
-}
-
-.dropdown-menu>li>a:hover{
-    background-color: #75CFB8;
-}
-
-.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
-    background-color: #75CFB8;
-}
-
-.btn.btn-default.btn-xs.btn-secondary.btn-sm dropdown-toggle{
-  <span>Código</span>
-}
-
-.justify {
-  text-align: justify;
-}
-
-hr.dotted{
-    width: 10%;
-    border-style: dotted none none;
-    border-width: 7px;
-    border-color: #8e918a;
-}
-
-</style>
-
-
 
 ***
 # **Apresentação**
