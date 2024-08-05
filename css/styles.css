@@ -67,3 +67,9 @@ th {
 .math {
     font-size: 0.95em; /* Adjust as needed */
 }
+
+.watch-out {
+    background-color: white;
+    border: 3px solid #78a8a8;
+    font-weight: bold;
+  }
