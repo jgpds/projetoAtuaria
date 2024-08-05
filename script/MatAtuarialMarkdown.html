@@ -1836,11 +1836,25 @@ l &lt;- tv@lx</code></pre>
 </div>
 <div id="leis-de-mortalidade" class="section level1">
 <h1>Leis de mortalidade</h1>
+<p class="justify">
+Leis de mortalidade são expressões matemáticas que descrevem a
+mortalidade em função da idade e um conjunto de parâmetros. Essas leis
+não são somente usada na atuária, mas também nas áreas de demografia
+(projeções de população) e saúde. Alguns dos modelos conhecidos são:
+Makeham, Gompertz, Thiele, Perks, Heligman-Pollard. E você pode se
+perguntar qual a finalidade dessas leis, na prática. Bom elas servem
+principalmente para criação de tábuas de vida específicas para uma
+massa. PS: No caso de criação de tábuas de vída, o modelo mais utilizado
+é o de Heligman-Pollard.
+</p>
 <table>
 <thead>
 <tr>
 <th>
 Distribuição
+</th>
+<th class="math">
+<span class="math inline">\(l_x\)</span>
 </th>
 <th>
 μ(x)
@@ -1858,6 +1872,9 @@ Restrições
 <td>
 De Moivre (1729)
 </td>
+<td>
+<span class="math inline">\(k \cdot (\omega - x)\)</span>
+</td>
 <td class="math">
 <span class="math inline">\((\omega - x)^{-1}\)</span>
 </td>
@@ -1871,6 +1888,9 @@ De Moivre (1729)
 <tr>
 <td>
 Gompertz (1825)
+</td>
+<td>
+xxx
 </td>
 <td class="math">
 <span class="math inline">\(Bc^x\)</span>
@@ -1886,6 +1906,9 @@ B &gt; 0, c &gt; 1, x ≥ 0
 <td>
 Makeham (1860)
 </td>
+<td>
+xxx
+</td>
 <td class="math">
 <span class="math inline">\(A + Bc^x\)</span>
 </td>
@@ -1900,6 +1923,9 @@ B &gt; 0, A ≥ -B, c &gt; 1, x ≥ 0
 <td>
 Weibull (1939)
 </td>
+<td>
+xxx
+</td>
 <td class="math">
 <span class="math inline">\(kx^n\)</span>
 </td>
@@ -1908,6 +1934,40 @@ Weibull (1939)
 </td>
 <td>
 k &gt; 0, n &gt; 0, x ≥ 0
+</td>
+</tr>
+<tr>
+<td>
+Thiele
+</td>
+<td>
+xxx1
+</td>
+<td>
+xxx
+</td>
+<td>
+xxx3
+</td>
+<td>
+xxx
+</td>
+</tr>
+<tr>
+<td>
+Heligman-Pollard
+</td>
+<td>
+xxx
+</td>
+<td>
+xxx2
+</td>
+<td>
+xxx
+</td>
+<td>
+xxx
 </td>
 </tr>
 </tbody>

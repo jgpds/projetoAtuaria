@@ -164,10 +164,16 @@ l <- tv@lx
 
 # Leis de mortalidade
 
+<p class="justify">
+  Leis de mortalidade são expressões matemáticas que descrevem a mortalidade em função da idade e um conjunto de parâmetros. Essas leis não são somente usada na atuária, mas também nas áreas de demografia (projeções de população) e saúde.
+  Alguns dos modelos conhecidos são: Makeham, Gompertz, Thiele, Perks, Heligman-Pollard. E você pode se perguntar qual a finalidade dessas leis, na prática. Bom elas servem principalmente para criação de tábuas de vida específicas para uma massa. PS: No caso de criação de tábuas de vída, o modelo mais utilizado é o de Heligman-Pollard.
+</p>
+
 <table>
     <thead>
         <tr>
             <th>Distribuição</th>
+            <th class = "math"> \(l_x\) </th>
             <th>μ(x)</th>
             <th>s(x)</th>
             <th>Restrições</th>
@@ -176,27 +182,45 @@ l <- tv@lx
     <tbody>
         <tr>
             <td>De Moivre (1729)</td>
-            <td class="math">\((\omega - x)^{-1}\)</td>
+            <td>\(k \cdot (\omega - x)\)</td>
+             <td class="math">\((\omega - x)^{-1}\)</td>
             <td class="math">\(1 - \frac{x}{\omega}\)</td>
             <td>0 ≤ x &lt; ω</td>
         </tr>
         <tr>
             <td>Gompertz (1825)</td>
+            <td>xxx</td>
             <td class="math">\(Bc^x\)</td>
             <td class="math">\(\exp[-m(c^x - 1)]\)</td>
             <td>B &gt; 0, c &gt; 1, x ≥ 0</td>
         </tr>
         <tr>
             <td>Makeham (1860)</td>
+            <td>xxx</td>
             <td class="math">\(A + Bc^x\)</td>
             <td class="math">\(\exp[-Ax - m(c^x - 1)]\)</td>
             <td>B &gt; 0, A ≥ -B, c &gt; 1, x ≥ 0</td>
         </tr>
         <tr>
             <td>Weibull (1939)</td>
+            <td>xxx</td>
             <td class="math">\(kx^n\)</td>
             <td class="math">\(\exp(-ux^{n+1})\)</td>
             <td>k &gt; 0, n &gt; 0, x ≥ 0</td>
+        </tr>
+        <tr>
+            <td>Thiele</td>
+            <td>xxx1</td>
+            <td> xxx</td>
+            <td> xxx3</td>
+            <td>xxx</td>
+        </tr>
+        <tr>
+            <td>Heligman-Pollard</td>
+            <td> xxx </td>
+            <td> xxx2 </td>
+            <td> xxx </td>
+            <td> xxx </td>
         </tr>
     </tbody>
 </table>
