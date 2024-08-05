@@ -128,7 +128,7 @@ library(equatiomatic)
 library(gganimate)
 ```
 
-Visualização da base de dados:\
+Visualização da base de dados:
 <br>
 
 ```{r Visualizando o banco de dados 2, echo=FALSE}
@@ -161,6 +161,45 @@ l <- tv@lx
 ```
 <br>
 <br>
+
+# Leis de mortalidade
+
+<table>
+    <thead>
+        <tr>
+            <th>Distribuição</th>
+            <th>μ(x)</th>
+            <th>s(x)</th>
+            <th>Restrições</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>De Moivre (1729)</td>
+            <td class="math">\((\omega - x)^{-1}\)</td>
+            <td class="math">\(1 - \frac{x}{\omega}\)</td>
+            <td>0 ≤ x &lt; ω</td>
+        </tr>
+        <tr>
+            <td>Gompertz (1825)</td>
+            <td class="math">\(Bc^x\)</td>
+            <td class="math">\(\exp[-m(c^x - 1)]\)</td>
+            <td>B &gt; 0, c &gt; 1, x ≥ 0</td>
+        </tr>
+        <tr>
+            <td>Makeham (1860)</td>
+            <td class="math">\(A + Bc^x\)</td>
+            <td class="math">\(\exp[-Ax - m(c^x - 1)]\)</td>
+            <td>B &gt; 0, A ≥ -B, c &gt; 1, x ≥ 0</td>
+        </tr>
+        <tr>
+            <td>Weibull (1939)</td>
+            <td class="math">\(kx^n\)</td>
+            <td class="math">\(\exp(-ux^{n+1})\)</td>
+            <td>k &gt; 0, n &gt; 0, x ≥ 0</td>
+        </tr>
+    </tbody>
+</table>
 
 # 1. Seguros individuais e discretos
 Formulação geral:
