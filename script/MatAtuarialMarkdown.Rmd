@@ -23,6 +23,10 @@ output:
 
 ------------------------------------------------------------------------
 
+<div id="hello" class="greeting message" style="color: red;">
+  Hello <strong>world</strong>!
+</div>
+
 # **Apresentação**
 
 <p class="justify">
@@ -73,6 +77,10 @@ dados_tabuas = read.delim('../base_de_dados/banco_de_tabuas.txt',dec = ',', head
 Ao calcular os prêmios e benefícios dos seguros, as seguradoras utilizam a tábua de mortalidade como base para estimar as probabilidades de ocorrência de eventos, e no presente relatório não foi diferente, para os cálculos dos seguros e anuidades utilizei como ponto de partida a probabilidade de morte *(qx)* da tábua *BR.EMSsb.v.2015.m* que pode ser encontrada no [Banco de tábuas do IBA](https://atuarios.org.br/tabuas-biometricas/).
 
 </p>
+
+```{r site}
+knitr::include_url("https://atuarios.org.br/tabuas-biometricas/")
+```
 
 <hr class="dotted">
 
@@ -904,3 +912,22 @@ Esse regime combina características dos regimes de repartição simples e capit
 -   CORDEIRO FILHO, Antonio. Cálculo Atuarial Aplicado. 2. ed. São Paulo: Atlas, 2014
 -   FinancialandActuarialMathematicsforLifeContingencies [[PDF](https://cran.r-project.org/web/packages/lifecontingencies/lifecontingencies.pdf)].
 -   Fernanda Peres: Rmarkdown. [Canal do Youtube](https://www.youtube.com/c/FernandaPeres).
+
+<!-- ```{js, echo=FALSE} -->
+<!-- (function() { -->
+<!--   var codes = document.querySelectorAll('pre:not([class])'); -->
+<!--   var code, i, d, s, p; -->
+<!--   for (i = 0; i < codes.length; i++) { -->
+<!--     code = codes[i]; -->
+<!--     p = code.parentNode; -->
+<!--     d = document.createElement('details'); -->
+<!--     s = document.createElement('summary'); -->
+<!--     s.innerText = 'Details'; -->
+<!--     // <details><summary>Details</summary></details> -->
+<!--     d.appendChild(s); -->
+<!--     // move the code into <details> -->
+<!--     p.replaceChild(d, code); -->
+<!--     d.appendChild(code); -->
+<!--   } -->
+<!-- })(); -->
+<!-- ``` -->
